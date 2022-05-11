@@ -6,11 +6,13 @@ async function main() {
     const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
     const web3 = createAlchemyWeb3(`${API_URL}`);
 
-    const contractAddress = '0xc7E286A86e4c5b8F7d52fA3F4Fe7D9DE6601b6F9' //replace with your own
+    const contractAddress = '0xc7E286A86e4c5b8F7d52fA3F4Fe7D9DE6601b6F9'
     const contractAPI = new web3.eth.Contract(contract.abi, contractAddress)
 
-    const nonce = await web3.eth.getTransactionCount(METAMASK_ACCOUNT_PUBLIC_KEY, 'pending');
+    const nonce = await web3.eth.getTransactionCount(METAMASK_ACCOUNT_PUBLIC_KEY, 'latest');
 
+    // const response = await contractAPI.methods.getVendingMachineBalance().call();
+    // console.log('response:', response);
     const transaction = {
         to: contractAddress, // faucet address to return eth
         gas: 500000,
